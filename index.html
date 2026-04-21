@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Match Winner Predictor</title>
+    <meta name="description" content="Predict the winner of your favorite IPL matches based on venues, toss, and team strengths!">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    
+    <!-- Floating Decorative Elements -->
+    <img src="assets/cricket_ball_1776591137860.png" alt="Cricket Ball" class="floating-img ball">
+    <img src="assets/ipl_trophy_1776591161428.png" alt="IPL Trophy" class="floating-img trophy">
+
+    <div class="container">
+        <header>
+            <h1>IPL <span>Predictor</span></h1>
+            <img src="assets/ipl_logo.png" alt="IPL Logo" class="main-logo">
+            <p id="predictor-subtext">Select the match details to predict the ultimate winner</p>
+            <button id="history-btn" class="secondary-btn">View Cap Winners History</button>
+        </header>
+
+        <main class="glass-panel">
+            <form id="prediction-form">
+                <div class="form-group">
+                    <label for="team1">Team 1</label>
+                    <select id="team1" required>
+                        <option value="" disabled selected>Select Team 1</option>
+                        <option value="CSK">Chennai Super Kings</option>
+                        <option value="DC">Delhi Capitals</option>
+                        <option value="GT">Gujarat Titans</option>
+                        <option value="KKR">Kolkata Knight Riders</option>
+                        <option value="LSG">Lucknow Super Giants</option>
+                        <option value="MI">Mumbai Indians</option>
+                        <option value="PBKS">Punjab Kings</option>
+                        <option value="RR">Rajasthan Royals</option>
+                        <option value="RCB">Royal Challengers Bengaluru</option>
+                        <option value="SRH">Sunrisers Hyderabad</option>
+                    </select>
+                </div>
+
+                <div class="vs-badge">VS</div>
+
+                <div class="form-group">
+                    <label for="team2">Team 2</label>
+                    <select id="team2" required>
+                        <option value="" disabled selected>Select Team 2</option>
+                        <option value="CSK">Chennai Super Kings</option>
+                        <option value="DC">Delhi Capitals</option>
+                        <option value="GT">Gujarat Titans</option>
+                        <option value="KKR">Kolkata Knight Riders</option>
+                        <option value="LSG">Lucknow Super Giants</option>
+                        <option value="MI">Mumbai Indians</option>
+                        <option value="PBKS">Punjab Kings</option>
+                        <option value="RR">Rajasthan Royals</option>
+                        <option value="RCB">Royal Challengers Bengaluru</option>
+                        <option value="SRH">Sunrisers Hyderabad</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="venue">Venue</label>
+                    <select id="venue" required>
+                        <option value="" disabled selected>Select Major Stadium</option>
+                        <option value="Wankhede">Wankhede Stadium, Mumbai</option>
+                        <option value="Chinnaswamy">M. Chinnaswamy Stadium, Bengaluru</option>
+                        <option value="EdenGardens">Eden Gardens, Kolkata</option>
+                        <option value="Chepauk">M. A. Chidambaram Stadium, Chennai</option>
+                        <option value="NarendraModi">Narendra Modi Stadium, Ahmedabad</option>
+                        <option value="ArunJaitley">Arun Jaitley Stadium, Delhi</option>
+                        <option value="RajivGandhi">Rajiv Gandhi Intl Stadium, Hyderabad</option>
+                        <option value="SawaiMansingh">Sawai Mansingh Stadium, Jaipur</option>
+                        <option value="PCA">PCA IS Bindra Stadium, Mohali</option>
+                        <option value="Ekana">BRSABV Ekana Cricket Stadium, Lucknow</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label for="tossWinner">Toss Winner</label>
+                        <select id="tossWinner" required>
+                            <option value="" disabled selected>Select Toss Winner</option>
+                            <!-- Options will be populated by JS based on selected teams -->
+                        </select>
+                    </div>
+
+                    <div class="form-group half-width">
+                        <label for="tossDecision">Decision</label>
+                        <select id="tossDecision" required>
+                            <option value="" disabled selected>Bat or Bowl?</option>
+                            <option value="Bat">Bat First</option>
+                            <option value="Bowl">Bowl First</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="predict-btn">Predict Winner <span class="spinner" id="spinner"></span></button>
+            </form>
+
+            <div id="result-section" class="hidden">
+                <h2>Predicted Winner</h2>
+                <div id="winner-reveal" class="winner-box">
+                    <img id="winner-symbol" class="winner-symbol" src="" alt="Winner Logo" style="display: none;">
+                    <span id="winner-name">Team Name</span>
+                </div>
+                
+                <div id="h2h-stats" class="stats-container">
+                    <h3>Historical Head-to-Head</h3>
+                    <div class="total-matches-badge">
+                        Total Matches: <span id="total-matches">0</span>
+                    </div>
+                    <div class="pie-chart-container">
+                        <div id="pie-chart" class="pie-chart"></div>
+                    </div>
+                    <div class="stats-labels">
+                        <div class="stat-label">
+                            <span id="stat-t1-color" class="color-box"></span>
+                            <span id="stat-t1-name">Team 1</span>: <span id="stat-t1-pct">50%</span>
+                        </div>
+                        <div class="stat-label">
+                            <span id="stat-t2-color" class="color-box"></span>
+                            <span id="stat-t2-name">Team 2</span>: <span id="stat-t2-pct">50%</span>
+                        </div>
+                    </div>
+                    <div class="wins-row">
+                        <div class="wins-badge" id="wins-t1-badge">
+                            <span id="wins-t1-name">Team 1</span>
+                            <strong id="wins-t1-count">0</strong> Wins
+                        </div>
+                        <div class="wins-divider">|</div>
+                        <div class="wins-badge" id="wins-t2-badge">
+                            <span id="wins-t2-name">Team 2</span>
+                            <strong id="wins-t2-count">0</strong> Wins
+                        </div>
+                    </div>
+                    <div class="avg-scores">
+                        <p><span id="avg-t1-name">Team 1</span> Avg: <strong id="avg-t1-score">160</strong></p>
+                        <p><span id="avg-t2-name">Team 2</span> Avg: <strong id="avg-t2-score">160</strong></p>
+                    </div>
+                </div>
+
+                <button id="reset-btn" class="reset-btn">Predict Another Match</button>
+            </div>
+        </main>
+        
+        <div class="champions-container glass-panel">
+            <h3>IPL Champions History</h3>
+            <div class="champions-grid">
+                <div class="champ-card bg-rcb"><span>2025</span> RCB 🏆</div>
+                <div class="champ-card bg-kkr"><span>2024</span> KKR</div>
+                <div class="champ-card bg-csk"><span>2023</span> CSK</div>
+                <div class="champ-card bg-gt"><span>2022</span> GT</div>
+                <div class="champ-card bg-csk"><span>2021</span> CSK</div>
+                <div class="champ-card bg-mi"><span>2020</span> MI</div>
+                <div class="champ-card bg-mi"><span>2019</span> MI</div>
+                <div class="champ-card bg-csk"><span>2018</span> CSK</div>
+                <div class="champ-card bg-mi"><span>2017</span> MI</div>
+                <div class="champ-card bg-srh"><span>2016</span> SRH</div>
+                <div class="champ-card bg-mi"><span>2015</span> MI</div>
+                <div class="champ-card bg-kkr"><span>2014</span> KKR</div>
+                <div class="champ-card bg-mi"><span>2013</span> MI</div>
+                <div class="champ-card bg-kkr"><span>2012</span> KKR</div>
+                <div class="champ-card bg-csk"><span>2011</span> CSK</div>
+                <div class="champ-card bg-csk"><span>2010</span> CSK</div>
+                <div class="champ-card bg-dc"><span>2009</span> DC</div>
+                <div class="champ-card bg-rr"><span>2008</span> RR</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Modal -->
+    <div id="history-modal" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <span class="close-btn">&times;</span>
+            <h2>Orange & Purple Cap Winners</h2>
+            <div class="table-container">
+                <table id="caps-table">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th class="orange-text">Orange Cap (Most Runs)</th>
+                            <th class="purple-text">Purple Cap (Most Wickets)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
