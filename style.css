@@ -102,10 +102,17 @@ header p {
     margin-top: 0.5rem;
 }
 
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 1rem 0;
+}
+
 .main-logo {
     width: 140px;
     height: auto;
-    margin: 1rem auto;
     display: block;
     filter: drop-shadow(0 4px 15px rgba(0,0,0,0.4));
 }
@@ -138,9 +145,11 @@ header p {
 
 .wins-row {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 1rem;
-    margin: 0.8rem 0;
+    gap: 1.5rem;
+    margin: 1.2rem 0;
+    width: 100%;
 }
 
 .wins-badge {
@@ -423,8 +432,10 @@ select:focus {
 
 .stats-labels {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    width: 100%;
 }
 
 .stat-label {

@@ -1,27 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-
-=======
->>>>>>> c818d60db88910fed020bd0dfb1c0486c515b884
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IPL Match Winner Predictor</title>
-<<<<<<< HEAD
-    <meta name="description"
-        content="Predict the winner of your favorite IPL matches based on venues, toss, and team strengths!">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-    <div class="background-overlay"></div>
-
-    <!-- Floating Decorative Elements -->
-    <img src="cricket_ball_1776591137860.png" alt="Cricket Ball" class="floating-img ball">
-    <img src="ipl_trophy_1776591161428.png" alt="IPL Trophy" class="floating-img trophy">
-=======
     <meta name="description" content="Predict the winner of your favorite IPL matches based on venues, toss, and team strengths!">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -32,16 +14,27 @@
     <!-- Floating Decorative Elements -->
     <img src="assets/cricket_ball_1776591137860.png" alt="Cricket Ball" class="floating-img ball">
     <img src="assets/ipl_trophy_1776591161428.png" alt="IPL Trophy" class="floating-img trophy">
->>>>>>> c818d60db88910fed020bd0dfb1c0486c515b884
 
     <div class="container">
         <header>
             <h1>IPL <span>Predictor</span></h1>
-<<<<<<< HEAD
-            <img src="ipl_logo.png" alt="IPL Logo" class="main-logo">
-=======
-            <img src="assets/ipl_logo.png" alt="IPL Logo" class="main-logo">
->>>>>>> c818d60db88910fed020bd0dfb1c0486c515b884
+            
+            <div class="logo-wrapper">
+                <img src="assets/ipl_logo.png" alt="IPL Logo" class="main-logo" 
+                     onerror="this.style.display='none'; document.getElementById('svg-logo').style.display='block';">
+                
+                <svg id="svg-logo" class="main-logo" style="display:none;" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#fcd34d;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <text x="50%" y="45" text-anchor="middle" font-family="Arial Black" font-size="30" fill="url(#logo-grad)">IPL</text>
+                    <path d="M10 50 Q 50 60 90 50" stroke="#fb923c" stroke-width="4" fill="none" stroke-linecap="round" />
+                </svg>
+            </div>
+
             <p id="predictor-subtext">Select the match details to predict the ultimate winner</p>
             <button id="history-btn" class="secondary-btn">View Cap Winners History</button>
         </header>
@@ -106,7 +99,6 @@
                         <label for="tossWinner">Toss Winner</label>
                         <select id="tossWinner" required>
                             <option value="" disabled selected>Select Toss Winner</option>
-                            <!-- Options will be populated by JS based on selected teams -->
                         </select>
                     </div>
 
@@ -120,12 +112,7 @@
                     </div>
                 </div>
 
-<<<<<<< HEAD
-                <button type="submit" class="predict-btn">Predict Winner <span class="spinner"
-                        id="spinner"></span></button>
-=======
                 <button type="submit" class="predict-btn">Predict Winner <span class="spinner" id="spinner"></span></button>
->>>>>>> c818d60db88910fed020bd0dfb1c0486c515b884
             </form>
 
             <div id="result-section" class="hidden">
@@ -134,11 +121,7 @@
                     <img id="winner-symbol" class="winner-symbol" src="" alt="Winner Logo" style="display: none;">
                     <span id="winner-name">Team Name</span>
                 </div>
-<<<<<<< HEAD
-
-=======
                 
->>>>>>> c818d60db88910fed020bd0dfb1c0486c515b884
                 <div id="h2h-stats" class="stats-container">
                     <h3>Historical Head-to-Head</h3>
                     <div class="total-matches-badge">
@@ -177,11 +160,7 @@
                 <button id="reset-btn" class="reset-btn">Predict Another Match</button>
             </div>
         </main>
-<<<<<<< HEAD
-
-=======
         
->>>>>>> c818d60db88910fed020bd0dfb1c0486c515b884
         <div class="champions-container glass-panel">
             <h3>IPL Champions History</h3>
             <div class="champions-grid">
@@ -231,9 +210,4 @@
 
     <script src="script.js"></script>
 </body>
-<<<<<<< HEAD
-
 </html>
-=======
-</html>
->>>>>>> c818d60db88910fed020bd0dfb1c0486c515b884
