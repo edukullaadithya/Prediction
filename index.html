@@ -42,7 +42,7 @@
             </div>
         </header>
 
-        <main class="glass-panel">
+        <main class="glass-panel" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.1" data-tilt-perspective="1000">
             <form id="prediction-form">
                 <div class="form-group">
                     <label for="team1">Team 1</label>
@@ -164,7 +164,7 @@
             </div>
         </main>
         
-        <div class="champions-container glass-panel">
+        <div class="champions-container glass-panel" data-tilt data-tilt-max="3" data-tilt-perspective="1000">
             <h3>IPL Champions History</h3>
             <div class="champions-grid">
                 <div class="champ-card bg-rcb"><span>2025</span> RCB 🏆</div>
@@ -258,6 +258,7 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
