@@ -334,10 +334,88 @@ document.addEventListener('DOMContentLoaded', () => {
         historyModal.classList.add('hidden');
     });
 
-    // Close modal if clicked outside of content
+    // Records Modal Logic
+    const recordsBtn = document.getElementById('records-btn');
+    const recordsModal = document.getElementById('records-modal');
+    const recordsClose = document.querySelector('.records-close');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    const highestScores = [
+        { team: "SRH", score: "287/3", vs: "RCB", year: 2024 },
+        { team: "SRH", score: "277/3", vs: "MI", year: 2024 },
+        { team: "KKR", score: "272/7", vs: "DC", year: 2024 },
+        { team: "RCB", score: "263/5", vs: "PWI", year: 2013 },
+        { team: "LSG", score: "257/5", vs: "PBKS", year: 2023 },
+        { team: "RCB", score: "248/3", vs: "GL", year: 2016 },
+        { team: "CSK", score: "246/5", vs: "RR", year: 2010 },
+        { team: "KKR", score: "245/6", vs: "PBKS", year: 2018 },
+        { team: "CSK", score: "240/5", vs: "PBKS", year: 2008 },
+        { team: "RCB", score: "235/1", vs: "MI", year: 2015 }
+    ];
+
+    const lowestScores = [
+        { team: "RCB", score: "49", vs: "KKR", year: 2017 },
+        { team: "RR", score: "58", vs: "RCB", year: 2009 },
+        { team: "RR", score: "59", vs: "RCB", year: 2023 },
+        { team: "DC", score: "66", vs: "MI", year: 2017 },
+        { team: "DC", score: "67", vs: "PBKS", year: 2017 },
+        { team: "KKR", score: "67", vs: "MI", year: 2008 },
+        { team: "RCB", score: "68", vs: "SRH", year: 2022 },
+        { team: "RCB", score: "70", vs: "RR", year: 2014 },
+        { team: "RCB", score: "70", vs: "CSK", year: 2019 },
+        { team: "PBKS", score: "73", vs: "RPS", year: 2017 }
+    ];
+
+    function populateRecords() {
+        const highestBody = document.querySelector('#highest-table tbody');
+        const lowestBody = document.querySelector('#lowest-table tbody');
+        
+        highestBody.innerHTML = highestScores.map((s, i) => `
+            <tr>
+                <td>${i + 1}</td>
+                <td><strong>${s.team}</strong></td>
+                <td class="gold-text">${s.score}</td>
+                <td>${s.vs}</td>
+                <td>${s.year}</td>
+            </tr>
+        `).join('');
+
+        lowestBody.innerHTML = lowestScores.map((s, i) => `
+            <tr>
+                <td>${i + 1}</td>
+                <td><strong>${s.team}</strong></td>
+                <td class="gold-text">${s.score}</td>
+                <td>${s.vs}</td>
+                <td>${s.year}</td>
+            </tr>
+        `).join('');
+    }
+
+    recordsBtn.addEventListener('click', () => {
+        populateRecords();
+        recordsModal.classList.remove('hidden');
+    });
+
+    recordsClose.addEventListener('click', () => {
+        recordsModal.classList.add('hidden');
+    });
+
+    // Tab Switching Logic
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(c => c.classList.add('hidden'));
+            
+            btn.classList.add('active');
+            const tabId = `${btn.dataset.tab}-tab`;
+            document.getElementById(tabId).classList.remove('hidden');
+        });
+    });
+
+    // Close both modals if clicked outside
     window.addEventListener('click', (e) => {
-        if (e.target === historyModal) {
-            historyModal.classList.add('hidden');
-        }
+        if (e.target === historyModal) historyModal.classList.add('hidden');
+        if (e.target === recordsModal) recordsModal.classList.add('hidden');
     });
 });

@@ -36,7 +36,10 @@
             </div>
 
             <p id="predictor-subtext">Select the match details to predict the ultimate winner</p>
-            <button id="history-btn" class="secondary-btn">View Cap Winners History</button>
+            <div class="header-buttons">
+                <button id="history-btn" class="secondary-btn">View Cap Winners History</button>
+                <button id="records-btn" class="secondary-btn">View IPL Records</button>
+            </div>
         </header>
 
         <main class="glass-panel">
@@ -204,6 +207,53 @@
                         <!-- Populated by JS -->
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Records Modal -->
+    <div id="records-modal" class="modal hidden">
+        <div class="modal-content glass-panel records-content">
+            <span class="close-btn records-close">&times;</span>
+            <div class="records-tabs">
+                <button class="tab-btn active" data-tab="highest">Highest Scores</button>
+                <button class="tab-btn" data-tab="lowest">Lowest Scores</button>
+            </div>
+            
+            <div id="highest-tab" class="tab-content">
+                <h2>Top 10 Highest IPL Scores</h2>
+                <div class="table-container">
+                    <table id="highest-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Team</th>
+                                <th>Score</th>
+                                <th>Opponent</th>
+                                <th>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="lowest-tab" class="tab-content hidden">
+                <h2>Top 10 Lowest IPL Scores</h2>
+                <div class="table-container">
+                    <table id="lowest-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Team</th>
+                                <th>Score</th>
+                                <th>Opponent</th>
+                                <th>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
